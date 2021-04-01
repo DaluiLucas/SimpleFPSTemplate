@@ -33,6 +33,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Effects")
 	UParticleSystem* JumpVFX;
 
+	UPROPERTY(EditInstanceOnly, Category = "LaunchPad")
+	float LaunchStrength;
+
+	UPROPERTY(EditInstanceOnly, Category = "LaunchPad")
+	float LaunchPitchAngle;
+
 	UFUNCTION()
 	void HadleOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };
