@@ -7,7 +7,7 @@
 #include "FPSAIGuard.generated.h"
 
 class UPawnSensingComponent;
-
+class ATargetPoint;
 UENUM(BluePrintType)
 enum class EAIState : uint8
 {
@@ -52,10 +52,24 @@ protected:
 
 	UFUNCTION(BluePrintImplementableEvent, Category ="AI")
 	void OnstateChanged(EAIState NewState);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+protected : 
+	UPROPERTY(EditInstanceOnly, Category = "AI")
+	bool bPatrol;
+
+	UPROPERTY(EditInstanceOnly, Category = "AI",meta = (EditConditionOnly="bPatrol"))
+	AActor* FirstPatrolPoint;
+
+	UPROPERTY(EditInstanceOnly, Category = "AI", meta = (EditConditionOnly = "bPatrol"))
+	AActor* SecondPatrolPoint;
+
+	AActor* CurrentPatrolPoint;
+
+	void MoveToNextPatrolPoint();
 
 
 };
